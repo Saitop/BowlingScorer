@@ -13,9 +13,13 @@ public class BowlingScorer {
         return sumOfScores;
     }
 
-    public static void parseInputStringToIntArray() {
+    public static void outputResultOnCommandLine() {
         Scanner inputScanner = new Scanner(System.in);
         String inputString = inputScanner.nextLine();
         System.out.print(inputString);
+    }
+
+    public static int[] parseStringngToIntegerArray(String inputString) {
+        return new int[]{1};
     }
 }

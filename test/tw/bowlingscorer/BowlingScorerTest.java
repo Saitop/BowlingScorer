@@ -1,7 +1,10 @@
 package tw.bowlingscorer;
 
 import org.junit.Test;
+
+import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThat;
 import static tw.bowlingscorer.BowlingScorer.getScoresFromInputNumbers;
 
 public class BowlingScorerTest {
@@ -20,4 +23,8 @@ public class BowlingScorerTest {
         assertEquals(6, getScoresFromInputNumbers(new int[]{1, 2, 3}));
     }
 
+    @Test
+    public void shouldReturnArrayOfOneWhenInputString() {
+        assertThat(BowlingScorer.parseStringngToIntegerArray("1"), is(new int[]{1}));
+    }
 }
