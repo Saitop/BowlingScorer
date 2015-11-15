@@ -1,5 +1,7 @@
 package tw.bowlingscorer;
 
+import java.util.Scanner;
+
 public class BowlingScorer {
 
     public static int getScoresFromInputNumbers(int[] inputNumbers) {
@@ -9,5 +11,11 @@ public class BowlingScorer {
 
         }
         return sumOfScores;
+    }
+
+    public static void parseInputStringToIntArray() {
+        Scanner inputScanner = new Scanner(System.in);
+        String inputString = inputScanner.nextLine();
+        System.out.print(inputString);
     }
 }
