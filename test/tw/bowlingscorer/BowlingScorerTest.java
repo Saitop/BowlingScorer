@@ -44,4 +44,9 @@ public class BowlingScorerTest {
     public void shouldReturnArrayContainsIntegerWhenInputStringWithComma() {
         assertThat(BowlingScorer.parseStringToIntegerList("1,2,3"), is(Arrays.asList(1,2,3)));
     }
+
+    @Test
+    public void shouldReturnArrayContainsIntegerWhenInputStringWithMultipleCommaAndMultipleSpaces() {
+        assertThat(BowlingScorer.parseStringToIntegerList("1,2   ,   3, 4"), is(Arrays.asList(1,2,3,4)));
+    }
 }
