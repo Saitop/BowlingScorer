@@ -15,4 +15,10 @@ public class BowlingScorerTest {
         assertEquals(3, BowlingScorer.getScoresFromInputNumbers(new int[]{1, 2}));
 
     }
+
+    @Test
+    public void shouldReturnSumWhenInputThreeNumbers() {
+        assertEquals(6, BowlingScorer.getScoresFromInputNumbers(new int[]{1, 2, 3}));
+
+    }
 }
