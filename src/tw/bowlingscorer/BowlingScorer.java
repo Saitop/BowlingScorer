@@ -25,7 +25,7 @@ public class BowlingScorer {
 
     public static List<Integer> parseStringToIntegerList(String inputString) {
         List<Integer> resultList = new ArrayList<>();
-        String[] inputStringArray = inputString.split(",");
+        String[] inputStringArray = inputString.replaceAll("[^\\d]+", ",").split(",");
         for (String eachString : inputStringArray) {
             int eachInt = Integer.parseInt(eachString);
             resultList.add(eachInt);
