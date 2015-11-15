@@ -15,7 +15,7 @@ public class BowlingScorer {
         return sumOfScores;
     }
 
-    public static void outputResultOnCommandLine() {
+    public static void computeInputAndReturnResults() {
         Scanner inputScanner = new Scanner(System.in);
         String inputString = inputScanner.nextLine().replaceAll("[^\\d]+", ",");
         int scores = getScoresFromInputNumbers(parseStringToIntegerList(inputString));
