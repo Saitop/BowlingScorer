@@ -17,15 +17,15 @@ public class BowlingScorer {
 
     public static void outputResultOnCommandLine() {
         Scanner inputScanner = new Scanner(System.in);
-        String inputString = inputScanner.nextLine();
+        String inputString = inputScanner.nextLine().replaceAll("[^\\d]+", ",");
         int scores = getScoresFromInputNumbers(parseStringToIntegerList(inputString));
-        System.out.print("input number:" + inputString + "\n");
-        System.out.print("Scores:" + scores + "\n");
+        System.out.print("Numbers inputted: " + inputString + "\n");
+        System.out.print("Scores: " + scores + "\n");
     }
 
     public static List<Integer> parseStringToIntegerList(String inputString) {
         List<Integer> resultList = new ArrayList<>();
-        String[] inputStringArray = inputString.replaceAll("[^\\d]+", ",").split(",");
+        String[] inputStringArray = inputString.split(",");
         for (String eachString : inputStringArray) {
             int eachInt = Integer.parseInt(eachString);
             resultList.add(eachInt);
