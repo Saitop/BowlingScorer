@@ -1,14 +1,13 @@
 package tw.bowlingscorer;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
 
 import static org.hamcrest.core.Is.is;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static tw.bowlingscorer.BowlingScorer.getScoresFromInputNumbers;
+import static org.junit.Assert.*;
 
 public class BowlingScorerTest {
     private BowlingScorer bowlingScorer;
@@ -17,21 +16,72 @@ public class BowlingScorerTest {
     public void setUp() {
         bowlingScorer = new BowlingScorer();
     }
-
     @Test
-    public void shouldReturnNumberOneWhenInputNumberOne() {
-        assertEquals(1, getScoresFromInputNumbers(Arrays.asList(1)));
+    public void testScoreNoSpareOrStrike() {
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(2);
+
+        assertEquals(3, bowlingScorer.score());
+
     }
 
     @Test
-    public void shouldReturnSumOfThreeWhenInputOneAndTWo() {
-        assertEquals(3, getScoresFromInputNumbers(Arrays.asList(1, 2)));
+    public void testScoreNoSpareOrStrikeRollFourTimes() {
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(2);
+        bowlingScorer.roll(3);
+        bowlingScorer.roll(4);
+        assertEquals(10, bowlingScorer.score());
     }
 
     @Test
-    public void shouldReturnSumWhenInputThreeNumbers() {
-        assertEquals(6, getScoresFromInputNumbers(Arrays.asList(1, 2, 3)));
+    public void testScoreFourTimesWithTwoSpare() {
+        bowlingScorer.roll(9);
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(9);
+        bowlingScorer.roll(1);
+        assertEquals(29, bowlingScorer.score());
     }
+
+    @Test
+    public void testStrikeOnFirstAttempt() {
+
+        bowlingScorer.roll(10);
+
+        bowlingScorer.roll(5);
+        bowlingScorer.roll(5);
+
+        Assert.assertEquals(30, bowlingScorer.score());
+
+    }
+
+    @Test
+    public void testScoreWithOneStrike() {
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(1);
+        assertEquals(18, bowlingScorer.score());
+    }
+
+//    @Test
+//    public void testScoreWithAllStrike() {
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        bowlingScorer.roll(10);
+//        assertEquals(300, bowlingScorer.score());
+//    }
+
 
     @Test
     public void shouldReturnArrayOfOneWhenInputString() {

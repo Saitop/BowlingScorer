@@ -8,7 +8,7 @@ public class BowlingScorerTestDrive {
             BowlingScorer bowlingScorer = new BowlingScorer();
             Scanner inputScanner = new Scanner(System.in);
             String inputString = inputScanner.nextLine().replaceAll("[^\\d]+", ",");
-            int scores = bowlingScorer.score(inputString);
+            int scores = bowlingScorer.getSumOfScore(inputString);
             System.out.print("Numbers inputted: " + inputString + "\n");
             System.out.print("Scores: " + scores + "\n");
         }
