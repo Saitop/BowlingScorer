@@ -15,15 +15,12 @@ public class BowlingScorer {
         return sumOfScores;
     }
 
-    public static void computeInputAndReturnResults() {
-        Scanner inputScanner = new Scanner(System.in);
-        String inputString = inputScanner.nextLine().replaceAll("[^\\d]+", ",");
+    public int score(String inputString) {
         int scores = getScoresFromInputNumbers(parseStringToIntegerList(inputString));
-        System.out.print("Numbers inputted: " + inputString + "\n");
-        System.out.print("Scores: " + scores + "\n");
+        return scores;
     }
 
-    public static List<Integer> parseStringToIntegerList(String inputString) {
+    public List<Integer> parseStringToIntegerList(String inputString) {
         List<Integer> resultList = new ArrayList<>();
         String[] inputStringArray = inputString.replaceAll("[^\\d]+", ",").split(",");
         for (String eachString : inputStringArray) {

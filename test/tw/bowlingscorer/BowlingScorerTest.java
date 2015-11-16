@@ -1,5 +1,6 @@
 package tw.bowlingscorer;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -10,6 +11,13 @@ import static org.junit.Assert.assertThat;
 import static tw.bowlingscorer.BowlingScorer.getScoresFromInputNumbers;
 
 public class BowlingScorerTest {
+    private BowlingScorer bowlingScorer;
+
+    @Before
+    public void setUp() {
+        bowlingScorer = new BowlingScorer();
+    }
+
     @Test
     public void shouldReturnNumberOneWhenInputNumberOne() {
         assertEquals(1, getScoresFromInputNumbers(Arrays.asList(1)));
@@ -27,37 +35,37 @@ public class BowlingScorerTest {
 
     @Test
     public void shouldReturnArrayOfOneWhenInputString() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1"), is(Arrays.asList(1)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1"), is(Arrays.asList(1)));
     }
 
     @Test
     public void shouldReturnArrayContainsIntegerOneAndTwoWhenInputStringOfOneAndTwo() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1 2"), is(Arrays.asList(1, 2)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1 2"), is(Arrays.asList(1, 2)));
     }
 
     @Test
     public void shouldReturnArrayContainsIntegerWhenInputString() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1 2 3"), is(Arrays.asList(1, 2, 3)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1 2 3"), is(Arrays.asList(1, 2, 3)));
     }
 
     @Test
     public void shouldReturnArrayContainsIntegerWhenInputStringWithComma() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1,2,3"), is(Arrays.asList(1, 2, 3)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1,2,3"), is(Arrays.asList(1, 2, 3)));
     }
 
     @Test
     public void shouldReturnArrayContainsIntegerWhenInputStringWithMultipleCommasAndMultipleSpaces() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1,2   ,   3, 4"), is(Arrays.asList(1, 2, 3, 4)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1,2   ,   3, 4"), is(Arrays.asList(1, 2, 3, 4)));
     }
 
     @Test
     public void shouldReturnArrayContainsIntegerWhenInputStringWithMoreCommas() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1,2  , ,,   3, 4"), is(Arrays.asList(1, 2, 3, 4)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1,2  , ,,   3, 4"), is(Arrays.asList(1, 2, 3, 4)));
     }
 
     @Test
     public void shouldReturnArrayContainsIntegerWhenInputStringWithCharacters() {
-        assertThat(BowlingScorer.parseStringToIntegerList("1,2, a ,3, 4"), is(Arrays.asList(1, 2, 3, 4)));
+        assertThat(bowlingScorer.parseStringToIntegerList("1,2, a ,3, 4"), is(Arrays.asList(1, 2, 3, 4)));
     }
 
 }
