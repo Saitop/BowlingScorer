@@ -7,7 +7,7 @@ public class BowlingScorer {
 
     private final List<Frame> frames;
     private int frameCounter = 0;
-    private static final int MAX_FRAMES = 10;
+    private static final int MAX_FRAMES = 12;
 
 
     public BowlingScorer() {
@@ -22,7 +22,6 @@ public class BowlingScorer {
         frame.setScore(eachPin);
         if (isBonusFrame()) {
             Frame prev = getPreviousFrame();
-            // restrict to one attempt, when last frame was spare
             if (prev.isSpare() || prev.isStrike()) {
                 frame.limitToOneAttempt();
             }
@@ -31,56 +30,60 @@ public class BowlingScorer {
     }
 
     private Frame getFrame() {
-
         Frame frame = getCurrentFrame();
-
         if (frame.isDone()) {
-
-            // new bonus frame
             if (isLastFrame() && (frame.isSpare() || frame.isStrike())) {
                 Frame bonus = new Frame();
                 frames.add(bonus);
                 frameCounter++;
                 return bonus;
             }
-
             frameCounter++;
             if (frameCounter == MAX_FRAMES || isBonusFrame()) {
                 return null;
             }
-
             frame = getCurrentFrame();
         }
-
         return frame;
     }
 
 
     public int score() {
-        int score;
-        // first frame
+        int score = 0;
+        Frame curr = getSpecificFrame(frameCounter);
         if (frameCounter == 0) {
-            Frame curr = getCurrentFrame();
-            return curr.eachFrameScore();
+            return curr.getFrameScores();
         } else {
-
-            Frame curr = getCurrentFrame();
-            Frame prev = getPreviousFrame();
-
+            Frame prev = getSpecificFrame(frameCounter - 1);
             if (isBonusFrame()) {
-                return prev.eachFrameScore() + curr.eachFrameScore();
+                return prev.getFrameScores() + curr.getFrameScores();
             }
-            score = curr.eachFrameScore() + prev.eachFrameScore();
-            for(int i=frameCounter;i>=1;i--){
-                if (prev.isSpare()) {
-                    score += curr.getFirstScore();
+            score = curr.getFrameScores();
+            for (int i = frameCounter; i >= 1; i--) {
+                Frame currentFrame = getSpecificFrame(i);
+                Frame previousOneFrame = getSpecificFrame(i - 1);
+                score += previousOneFrame.getFrameScores();
+                if (previousOneFrame.isSpare()) {
+                    score += currentFrame.getFirstScore();
                 }
-                if (prev.isStrike()) {
-                    score += (curr.getFirstScore()+curr.getSecondScore());
+                if (previousOneFrame.isStrike()) {
+                    score += (currentFrame.getFrameScores());
+                    if (i-2>0){
+                        Frame previousTwoFrame = getSpecificFrame(i - 2);
+                        if (previousTwoFrame.isStrike()) {
+                            score = score+ previousOneFrame.getFrameScores();
+                            if(i==11){
+                                score -= 10*2;
+                            }
+                        }
+
+                    }
                 }
             }
 
         }
+
+
         return score;
     }
 
@@ -90,6 +93,10 @@ public class BowlingScorer {
 
     private Frame getCurrentFrame() {
         return frames.get(frameCounter);
+    }
+
+    private Frame getSpecificFrame(int position) {
+        return frames.get(position);
     }
 
     private boolean isBonusFrame() {
@@ -118,4 +125,5 @@ public class BowlingScorer {
         }
         return resultList;
     }
+
 }

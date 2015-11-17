@@ -31,6 +31,7 @@ public class BowlingScorerTest {
         bowlingScorer.roll(2);
         bowlingScorer.roll(3);
         bowlingScorer.roll(4);
+
         assertEquals(10, bowlingScorer.score());
     }
 
@@ -40,19 +41,17 @@ public class BowlingScorerTest {
         bowlingScorer.roll(1);
         bowlingScorer.roll(9);
         bowlingScorer.roll(1);
+
         assertEquals(29, bowlingScorer.score());
     }
 
     @Test
     public void testStrikeOnFirstAttempt() {
-
         bowlingScorer.roll(10);
-
         bowlingScorer.roll(5);
         bowlingScorer.roll(5);
 
         Assert.assertEquals(30, bowlingScorer.score());
-
     }
 
     @Test
@@ -67,20 +66,22 @@ public class BowlingScorerTest {
         assertEquals(18, bowlingScorer.score());
     }
 
-//    @Test
-//    public void testScoreWithAllStrike() {
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        bowlingScorer.roll(10);
-//        assertEquals(300, bowlingScorer.score());
-//    }
+    @Test
+    public void testScoreWithAllStrike() {
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(10);
+        assertEquals(300, bowlingScorer.score());
+    }
 
 
     @Test

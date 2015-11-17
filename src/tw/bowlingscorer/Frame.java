@@ -7,12 +7,12 @@ public class Frame {
 
     public int[] scores = new int[2];
     public int remainsPins = 10;
-    public int noAttempts = 0;
+    public int attemptsCounter = 0;
 
     public boolean isStrike = false;
 
     public void setScore(int score) {
-        scores[noAttempts++] = score;
+        scores[attemptsCounter++] = score;
         remainsPins -= score;
 
         if (score == MAX_PINS) {
@@ -22,7 +22,7 @@ public class Frame {
     }
 
     public boolean isSpare() {
-        return remainsPins == 0 && noAttempts == MAX_ATTEMPTS_PER_FRAME && !isStrike;
+        return remainsPins == 0 && attemptsCounter == MAX_ATTEMPTS_PER_FRAME && !isStrike;
     }
 
     public boolean isStrike() {
@@ -30,16 +30,16 @@ public class Frame {
     }
 
     public boolean isDone() {
-        return noAttempts == MAX_ATTEMPTS_PER_FRAME;
+        return attemptsCounter == MAX_ATTEMPTS_PER_FRAME;
     }
 
 
     public void limitToOneAttempt() {
         scores[1] = 0;
-        noAttempts++;
+        attemptsCounter++;
     }
 
-    public int eachFrameScore() {
+    public int getFrameScores() {
         return scores[0] + scores[1];
     }
 
