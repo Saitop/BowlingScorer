@@ -17,7 +17,7 @@ public class BowlingScorerTest {
         bowlingScorer = new BowlingScorer();
     }
     @Test
-    public void testScoreNoSpareOrStrike() {
+    public void shouldReturnThreeWhenRollOneAndTwoPins() {
         bowlingScorer.roll(1);
         bowlingScorer.roll(2);
 
@@ -26,7 +26,7 @@ public class BowlingScorerTest {
     }
 
     @Test
-    public void testScoreNoSpareOrStrikeRollFourTimes() {
+    public void shouldReturnTenPinsWhenRollOneToFourPins() {
         bowlingScorer.roll(1);
         bowlingScorer.roll(2);
         bowlingScorer.roll(3);
@@ -36,7 +36,7 @@ public class BowlingScorerTest {
     }
 
     @Test
-    public void testScoreFourTimesWithTwoSpare() {
+    public void shouldReturnWithSpareBonusWhenRollTwoSpare() {
         bowlingScorer.roll(9);
         bowlingScorer.roll(1);
         bowlingScorer.roll(9);
@@ -46,7 +46,7 @@ public class BowlingScorerTest {
     }
 
     @Test
-    public void testStrikeOnFirstAttempt() {
+    public void shouldReturnWithStrikeBonusWhenRollOneStrike() {
         bowlingScorer.roll(10);
         bowlingScorer.roll(5);
         bowlingScorer.roll(5);
@@ -55,7 +55,7 @@ public class BowlingScorerTest {
     }
 
     @Test
-    public void testTwoStrike() {
+    public void shouldReturnWithStrikeBonusWhenRollTwoStrike() {
         bowlingScorer.roll(10);
         bowlingScorer.roll(5);
         bowlingScorer.roll(5);
@@ -68,7 +68,7 @@ public class BowlingScorerTest {
 
 
     @Test
-    public void testScoreWithOneStrike() {
+    public void shouldReturnWithStrikeBonusWhenRollOneStrikeInTheMiddle() {
         bowlingScorer.roll(1);
         bowlingScorer.roll(1);
         bowlingScorer.roll(1);
@@ -80,7 +80,7 @@ public class BowlingScorerTest {
     }
 
     @Test
-    public void testScoreWithAllStrike() {
+    public void shouldReturnThreeHundredPinsWhenRollAllStrikes() {
         bowlingScorer.roll(10);
         bowlingScorer.roll(10);
         bowlingScorer.roll(10);
