@@ -55,6 +55,19 @@ public class BowlingScorerTest {
     }
 
     @Test
+    public void testTwoStrike() {
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(5);
+        bowlingScorer.roll(5);
+        bowlingScorer.roll(10);
+        bowlingScorer.roll(1);
+        bowlingScorer.roll(1);
+
+        Assert.assertEquals(54, bowlingScorer.score());
+    }
+
+
+    @Test
     public void testScoreWithOneStrike() {
         bowlingScorer.roll(1);
         bowlingScorer.roll(1);
